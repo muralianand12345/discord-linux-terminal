@@ -1,0 +1,21 @@
+[Unit]
+Description=Mod-Phase
+After=network.target
+
+[Service]
+CPUQuota=70%
+CPUQuotaPeriodSec=1ms
+Type=simple
+Restart=always
+RestartSec=60
+RemainAfterExit=true
+#KillMode=process
+WorkingDirectory=/home/UserName/Console
+# Replace your node directory which you've copied above
+ExecStart=/home/UserName/.config/nvm/versions/node/v18.8.0/bin/node --no-warnings /home/UserName/Console/index.js
+User=root # if not required, replace your username here
+StandardOutput=append:/home/UserName/Console/logs/std.log
+StandardError=append:/home/UserName/Console/logs/err.log
+
+[Install]
+WantedBy=multi-user.target
